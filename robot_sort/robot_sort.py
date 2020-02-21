@@ -81,11 +81,13 @@ class SortingRobot:
         Turn on the robot's light
         """
         self._light = "ON"
+
     def set_light_off(self):
         """
         Turn off the robot's light
         """
         self._light = "OFF"
+
     def light_is_on(self):
         """
         Returns True if the robot's light is on and False otherwise.
@@ -96,45 +98,67 @@ class SortingRobot:
         """
         Sort the robot's list.
         """
-        # Fill this out
         # While loop until base case is reached
+        while True:
+            self.set_light_off()
 
             # While stuck in this loop, will go all the way down the list
             #  from left to right until it can no longer move left when it
             #  fails the check for the while loop conditional statement
-            # While loop if can move left
+            # While loop if can move right
+            while self.can_move_right():
                 # Do a swap
-                # Move left
+                self.swap_item()
+                # Move right
+                self.move_right()
 
                 # Compare with list item in front of it
-                # If item in front of it is larger
+                # If item in front of it is smaller
+                if self.compare_item() == 1:
                     # Swap
+                    self.swap_item()
                     # Indicate a swap occurred within this while loop
+                    self.set_light_on()
 
-                # Move back (right)
+                # Move back (left)
+                self.move_left()
                 # Swap
-                # Move left again & repeat
+                self.swap_item()
+                # Move right again & repeat
+                self.move_right()
 
-            # Check for base case (light) to return to outer while loop
+            # Check for base case (light) to indicate sorting complete
+            if not self.light_is_on():
+                return
 
             # While stuck in this loop, will go all the way down the list
             #  from right to left until it can no longer move left when it
             #  fails the check for the while loop conditional statement
-            # While loop if can move right
+            # While loop if can move left
+            while self.can_move_left():
                 # Do a swap
-                # Move right
+                self.swap_item()
+                # Move left
+                self.move_left()
 
                 # Compare with list item in front of it
                 # If item in front of it is larger
+                if self.compare_item() == -1:
                     # Swap
+                    self.swap_item()
                     # Indicate a swap occurred within this while loop
+                    self.set_light_on()
 
-                # Move back (left)
+                # Move back (right)
+                self.move_right()
                 # Swap
-                # Move right again & repeat
+                self.swap_item()
+                # Move left again & repeat
+                self.move_left()
 
-            # Check for base case (light) to return to outer while loop
-
+            # Check for base case (light) to indicate sorting complete
+            if not self.light_is_on():
+                return
 
 
 # #### What's going on? ###########################################################################
