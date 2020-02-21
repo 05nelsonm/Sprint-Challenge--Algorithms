@@ -97,8 +97,59 @@ class SortingRobot:
         Sort the robot's list.
         """
         # Fill this out
-        pass
+        # While loop until base case is reached
 
+            # While stuck in this loop, will go all the way down the list
+            #  from left to right until it can no longer move left when it
+            #  fails the check for the while loop conditional statement
+            # While loop if can move left
+                # Do a swap
+                # Move left
+
+                # Compare with list item in front of it
+                # If item in front of it is larger
+                    # Swap
+                    # Indicate a swap occurred within this while loop
+
+                # Move back (right)
+                # Swap
+                # Move left again & repeat
+
+            # Check for base case (light) to return to outer while loop
+
+            # While stuck in this loop, will go all the way down the list
+            #  from right to left until it can no longer move left when it
+            #  fails the check for the while loop conditional statement
+            # While loop if can move right
+                # Do a swap
+                # Move right
+
+                # Compare with list item in front of it
+                # If item in front of it is larger
+                    # Swap
+                    # Indicate a swap occurred within this while loop
+
+                # Move back (left)
+                # Swap
+                # Move right again & repeat
+
+            # Check for base case (light) to return to outer while loop
+
+
+
+# #### What's going on? ###########################################################################
+# self._list gets assigned the list of numbers.
+#   Starts with: No Items, position 0, light "OFF", time 0
+#
+# List index is used to determine if the robot can go left or right.
+# Movement cycles between left and right (start off going right, b/c list index starts at index 0)
+# Swapping an item is swapping list values
+# Comparing an item is comparing what it's currently holding to the next list value
+#    gt returns 1
+#    lt returns -1
+#    eq return 0
+# Light is the base case to indicate a sort happened while in that left or right loop (hint gave it away)
+# ##################################################################################################
 
 if __name__ == "__main__":
     # Test our your implementation from the command line
