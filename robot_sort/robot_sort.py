@@ -81,11 +81,13 @@ class SortingRobot:
         Turn on the robot's light
         """
         self._light = "ON"
+
     def set_light_off(self):
         """
         Turn off the robot's light
         """
         self._light = "OFF"
+
     def light_is_on(self):
         """
         Returns True if the robot's light is on and False otherwise.
@@ -96,9 +98,82 @@ class SortingRobot:
         """
         Sort the robot's list.
         """
-        # Fill this out
-        pass
+        # While loop until base case is reached
+        while True:
+            self.set_light_off()
 
+            # While stuck in this loop, will go all the way down the list
+            #  from left to right until it can no longer move left when it
+            #  fails the check for the while loop conditional statement
+            # While loop if can move right
+            while self.can_move_right():
+                # Do a swap
+                self.swap_item()
+                # Move right
+                self.move_right()
+
+                # Compare with list item in front of it
+                # If item in front of it is smaller
+                if self.compare_item() == 1:
+                    # Swap
+                    self.swap_item()
+                    # Indicate a swap occurred within this while loop
+                    self.set_light_on()
+
+                # Move back (left)
+                self.move_left()
+                # Swap
+                self.swap_item()
+                # Move right again & repeat
+                self.move_right()
+
+            # Check for base case (light) to indicate sorting complete
+            if not self.light_is_on():
+                return
+
+            # While stuck in this loop, will go all the way down the list
+            #  from right to left until it can no longer move left when it
+            #  fails the check for the while loop conditional statement
+            # While loop if can move left
+            while self.can_move_left():
+                # Do a swap
+                self.swap_item()
+                # Move left
+                self.move_left()
+
+                # Compare with list item in front of it
+                # If item in front of it is larger
+                if self.compare_item() == -1:
+                    # Swap
+                    self.swap_item()
+                    # Indicate a swap occurred within this while loop
+                    self.set_light_on()
+
+                # Move back (right)
+                self.move_right()
+                # Swap
+                self.swap_item()
+                # Move left again & repeat
+                self.move_left()
+
+            # Check for base case (light) to indicate sorting complete
+            if not self.light_is_on():
+                return
+
+
+# #### What's going on? ###########################################################################
+# self._list gets assigned the list of numbers.
+#   Starts with: No Items, position 0, light "OFF", time 0
+#
+# List index is used to determine if the robot can go left or right.
+# Movement cycles between left and right (start off going right, b/c list index starts at index 0)
+# Swapping an item is swapping list values
+# Comparing an item is comparing what it's currently holding to the next list value
+#    gt returns 1
+#    lt returns -1
+#    eq return 0
+# Light is the base case to indicate a sort happened while in that left or right loop (hint gave it away)
+# ##################################################################################################
 
 if __name__ == "__main__":
     # Test our your implementation from the command line
